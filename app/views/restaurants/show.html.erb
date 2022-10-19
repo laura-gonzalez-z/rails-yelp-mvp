@@ -1,0 +1,5 @@
+<h1><%= @restaurant.name %></h1>
+<p>Category: <span class="badge bg-primary"><%= @restaurant.category.capitalize %></span></p>
+<p>Address: <%= @restaurant.address %></p>
+<hr />
+<%= link_to raw('<i class="fa-solid fa-rotate-left"></i> Go back to list'), restaurants_path %>
