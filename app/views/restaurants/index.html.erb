@@ -3,7 +3,22 @@
   <% @restaurants.each do |restaurant| %>
     <div class="restaurant">
       <h2><%= restaurant.name %></h2>
-      <p>Category: <%= restaurant.category.capitalize %></p>
+      <div class="row">
+        <div class="col-12 col-sm-8">
+          <p>Category: <%= restaurant.category.capitalize %></p>
+        </div>
+        <div class="col-12 col-sm-4">
+          <%
+          a = []
+          restaurant.reviews.each do |review|
+            a << review.rating
+          end
+          if a.length > 0
+          %>
+            <p class="text-end"><%= '⭐' * (a.sum(0.0) / a.length) %></p>
+          <% end %>
+        </div>
+      </div>
       <p>
         <%= link_to "See details", restaurant_path(restaurant), class: "btn btn-primary"%>
       </p>

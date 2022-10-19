@@ -2,4 +2,17 @@
 <p>Category: <span class="badge bg-primary"><%= @restaurant.category.capitalize %></span></p>
 <p>Address: <%= @restaurant.address %></p>
 <hr />
-<%= link_to raw('<i class="fa-solid fa-rotate-left"></i> Go back to list'), restaurants_path %>
+<h2>Reviews</h2>
+<ul class="list-group mb-3">
+  <% @restaurant.reviews.each do |review| %>
+    <li class="list-group-item">
+      <p><%= '⭐' * review.rating %></p>
+      <p class="mb-0"><%= review.content %></p>
+    </li>
+  <% end %>
+</ul>
+<% #<%= link_to 'Write a review', new_restaurant_review_path(@restaurant) %>
+<h2>Write a review</h2>
+<%= render "/reviews/form", restaurant: @restaurant, review: @review %>
+<hr />
+<%= link_to 'Go back to list', restaurants_path %>
